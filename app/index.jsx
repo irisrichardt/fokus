@@ -1,51 +1,57 @@
+import { useState } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 const pomodoro = [
   {
     id: 'focus',
     initialValue: 25,
-    image: require('./pomodoro.png')
+    image: require('./pomodoro.png'),
+    display: 'Foco',
+    buttonColor: '#B872FF' 
   },
   {
     id: 'short',
     initialValue: 5,
-    image: require('./short.png')
+    image: require('./short.png'),
+    display: 'Pausa curta',
+    buttonColor: '#02CDA1' 
   },
   {
     id: 'long',
     initialValue: 15,
-    image: require('./long.png')
+    image: require('./long.png'),
+    display: 'Pausa longa',
+    buttonColor: '#BC2E59'
   },
 ]
 
 export default function Index() {
+
+  const [timerType, setTimerType] = useState(pomodoro[1]);
+
   return (
     <View style={styles.container} >
       <View style={styles.imageContainer}>
-        <Image source={require('./pomodoro.png')} style={styles.image} />
+        <Image source={timerType.image} style={styles.image} />
       </View>
       <View style={styles.actions}>
         <View style={styles.context}>
-          <Pressable style={styles.contextButtonActive}>
-            <Text style={styles.contextButtonText}>
-              Foco
-            </Text>
-          </Pressable>
-          <Pressable>
-            <Text style={styles.contextButtonText}>
-              Pausa curta
-            </Text>
-          </Pressable>
-          <Pressable>
-            <Text style={styles.contextButtonText}>
-              Pausa longa
-            </Text>
-          </Pressable>
+          {pomodoro.map(p => (
+            <Pressable
+              key={p.id}
+              style={timerType.id === p.id ? styles.contextButtonActive : null}
+              onPress={() => setTimerType(p)}
+            >
+              <Text style={styles.contextButtonText}>
+                {p.display}
+              </Text>
+            </Pressable>
+          ))}
         </View>
         <Text style={styles.timer}>
-          25:00
+          {new Date(timerType.initialValue * 1000).toLocaleTimeString('pt-BR', { minute: '2-digit', second: '2-digit' })}
         </Text>
-        <Pressable style={styles.button}>
+        <Pressable style={[styles.button, { backgroundColor: timerType.buttonColor }]}>
           <Text style={styles.buttonText}>Começar</Text>
         </Pressable>
       </View>
@@ -108,7 +114,7 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   button: {
-    backgroundColor: '#B872FF',
+    //backgroundColor: '#B872FF',
     borderRadius: 32,
     padding: 8,
   },
