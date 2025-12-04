@@ -1,50 +1,97 @@
-# Welcome to your Expo app 👋
+# 📱 Expo App — Fokus
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Um projeto criado com **Expo** usando `create-expo-app`, desenvolvido para **cronometrar ciclos de produtividade** utilizando o **método Pomodoro**.
+O app permite alternar entre **foco**, **pausa curta** e **pausa longa**, facilitando a organização do tempo e aumentando a produtividade no dia a dia.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Como começar
 
-   ```bash
-   npm install
-   ```
+### 1️⃣ Instale as dependências
 
-2. Start the app
+```bash
+npm install
+```
 
-   ```bash
-   npx expo start
-   ```
+### 2️⃣ Inicie o projeto
 
-In the output, you'll find options to open the app in a
+```bash
+npx expo start
+```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Ao rodar o comando, você poderá abrir o app em:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+* 📱 **Expo Go** (Android/iOS)
+* 🧪 **Development Build**
+* 📱 **Android Emulator**
+* 🍎 **iOS Simulator**
+* 🖥️ **Navegador (Web)**
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## 📂 Estrutura do projeto
+
+Este projeto utiliza **file-based routing** do Expo Router.
+Os arquivos dentro da pasta **`app/`** definem automaticamente suas rotas:
+
+```
+app/
+ ├── index.js        → Tela inicial
+ ├── settings.js     → Exemplo de rota
+ └── components/     → Componentes reutilizáveis
+```
+
+Para entender como funciona a navegação baseada em arquivos:
+🔗 [https://docs.expo.dev/router/introduction/](https://docs.expo.dev/router/introduction/)
+
+---
+
+## 🧼 Resetar o projeto
+
+Se quiser começar do zero com uma estrutura limpa:
 
 ```bash
 npm run reset-project
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Esse comando move o código inicial para a pasta **`app-example/`** e recria um diretório **`app/`** vazio.
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
+## 📘 Aprenda mais
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+* 📄 **Documentação do Expo:**
+  [https://docs.expo.dev](https://docs.expo.dev)
 
-## Join the community
+* 🎓 **Tutorial passo a passo:**
+  [https://docs.expo.dev/tutorial/introduction/](https://docs.expo.dev/tutorial/introduction/)
 
-Join our community of developers creating universal apps.
+* 📚 **Guias avançados:**
+  [https://docs.expo.dev/guides/](https://docs.expo.dev/guides/)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## 🤝 Comunidade
+
+Junte-se à comunidade do Expo:
+
+* 🧑‍💻 **GitHub:** [https://github.com/expo/expo](https://github.com/expo/expo)
+* 💬 **Discord:** [https://chat.expo.dev](https://chat.expo.dev)
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+* **React Native**
+* **Expo**
+* **Expo Router**
+* **JavaScript/TypeScript (opcional)**
+
+---
+
+## 📄 Licença
+
+Este projeto é apenas para fins de estudo.
+Você pode alterar e reutilizar como quiser.
+
+---
