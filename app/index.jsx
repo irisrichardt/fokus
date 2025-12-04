@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { ActionButton } from "../components/ActionButton";
+import { FokusButton } from "../components/FokusButton";
+import { Timer } from "../components/Timer";
 
 const pomodoro = [
   {
@@ -7,14 +10,14 @@ const pomodoro = [
     initialValue: 25,
     image: require('./pomodoro.png'),
     display: 'Foco',
-    buttonColor: '#B872FF' 
+    buttonColor: '#B872FF'
   },
   {
     id: 'short',
     initialValue: 5,
     image: require('./short.png'),
     display: 'Pausa curta',
-    buttonColor: '#02CDA1' 
+    buttonColor: '#02CDA1'
   },
   {
     id: 'long',
@@ -37,23 +40,16 @@ export default function Index() {
       <View style={styles.actions}>
         <View style={styles.context}>
           {pomodoro.map(p => (
-            <Pressable
+            <ActionButton
               key={p.id}
-              style={timerType.id === p.id ? styles.contextButtonActive : null}
+              active={timerType.id === p.id}
               onPress={() => setTimerType(p)}
-            >
-              <Text style={styles.contextButtonText}>
-                {p.display}
-              </Text>
-            </Pressable>
+              display={p.display}
+            />
           ))}
         </View>
-        <Text style={styles.timer}>
-          {new Date(timerType.initialValue * 1000).toLocaleTimeString('pt-BR', { minute: '2-digit', second: '2-digit' })}
-        </Text>
-        <Pressable style={[styles.button, { backgroundColor: timerType.buttonColor }]}>
-          <Text style={styles.buttonText}>Começar</Text>
-        </Pressable>
+        <Timer totalSeconds={timerType.initialValue} />
+        <FokusButton buttonColor={timerType.buttonColor} />
       </View>
       <View style={styles.footer}>
         <Text style={styles.footerText}>
@@ -76,12 +72,12 @@ const styles = StyleSheet.create({
     gap: 40,
   },
   imageContainer: {
-    padding: 20, // Altere o valor conforme necessário
+    padding: 20,
     justifyContent: "center",
     alignItems: "center",
   },
   image: {
-    width: 350, // Tamanho da imagem ajustável
+    width: 350,
     height: 350,
   },
   actions: {
@@ -96,32 +92,8 @@ const styles = StyleSheet.create({
   context: {
     flexDirection: "row",
     justifyContent: "space-around",
-    alignItems: "center"
-  },
-  contextButtonActive: {
-    backgroundColor: "#144480",
-    borderRadius: 8,
-  },
-  contextButtonText: {
-    fontSize: 12.5,
-    color: "#fff",
-    padding: 10,
-  },
-  timer: {
-    fontSize: 50,
-    color: "#FFF",
-    fontWeight: "bold",
-    textAlign: "center"
-  },
-  button: {
-    //backgroundColor: '#B872FF',
-    borderRadius: 32,
-    padding: 8,
-  },
-  buttonText: {
-    fontSize: 18,
-    color: "#021123",
-    textAlign: "center",
+    alignItems: "center",
+    width: "100%",
   },
   footer: {
     width: "80%",
