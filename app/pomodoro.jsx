@@ -8,48 +8,47 @@ import { Timer } from "../components/Timer";
 
 const pomodoro = [
   {
-    id: 'focus',
+    id: "focus",
     initialValue: 25 * 60,
-    image: require('../assets/images/pomodoro.png'),
-    display: 'Foco',
-    buttonColor: '#B872FF'
+    image: require("../assets/images/pomodoro.png"),
+    display: "Foco",
+    buttonColor: "#B872FF",
   },
   {
-    id: 'short',
+    id: "short",
     initialValue: 5 * 60,
-    image: require('../assets/images/short.png'),
-    display: 'Pausa curta',
-    buttonColor: '#02CDA1'
+    image: require("../assets/images/short.png"),
+    display: "Pausa curta",
+    buttonColor: "#02CDA1",
   },
   {
-    id: 'long',
+    id: "long",
     initialValue: 15 * 60,
-    image: require('../assets/images/long.png'),
-    display: 'Pausa longa',
-    buttonColor: '#BC2E59'
+    image: require("../assets/images/long.png"),
+    display: "Pausa longa",
+    buttonColor: "#BC2E59",
   },
-]
+];
 
 export default function Pomodoro() {
-
-  const [seconds, setSeconds] = useState(pomodoro[0].initialValue)
+  const [seconds, setSeconds] = useState(pomodoro[0].initialValue);
   const [timerType, setTimerType] = useState(pomodoro[0]);
-  const [timerRunning, setTimerRunning] = useState(false)
+  const [timerRunning, setTimerRunning] = useState(false);
   const timerRef = useRef(null);
 
   const clear = () => {
     if (timerRef.current != null) {
-      clearInterval(timerRef.current)
-      timerRef.current = null
-      setTimerRunning(false)
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+      setTimerRunning(false);
     }
-  }
+  };
 
   const toggleTimerType = (newTimerType) => {
-    setTimerType(newTimerType)
-    setSeconds(newTimerType.initialValue)
+    setTimerType(newTimerType);
+    setSeconds(newTimerType.initialValue);
     clear();
-  }
+  };
 
   const toggleTimer = () => {
     if (timerRef.current) {
@@ -59,25 +58,25 @@ export default function Pomodoro() {
 
     setTimerRunning(true);
     const id = setInterval(() => {
-      setSeconds(oldState => {
+      setSeconds((oldState) => {
         if (oldState === 0) {
           clear();
           return timerType.initialValue;
         }
-        return oldState - 1
-      })
+        return oldState - 1;
+      });
     }, 1000);
     timerRef.current = id;
   };
 
   return (
-    <View style={styles.container} >
+    <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image source={timerType.image} style={styles.image} />
       </View>
       <View style={styles.actions}>
         <View style={styles.context}>
-          {pomodoro.map(p => (
+          {pomodoro.map((p) => (
             <ActionButton
               key={p.id}
               active={timerType.id === p.id}
@@ -91,7 +90,7 @@ export default function Pomodoro() {
           icon={timerRunning ? <IconPause /> : <IconPlay />}
           buttonColor={timerType.buttonColor}
           onPress={toggleTimer}
-          title={timerRunning ? 'Pausar' : 'Começar'}
+          title={timerRunning ? "Pausar" : "Começar"}
         />
       </View>
       <Footer />
@@ -123,7 +122,7 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     borderWidth: 2,
     borderColor: "#144480",
-    gap: 32
+    gap: 32,
   },
   context: {
     flexDirection: "row",
@@ -131,4 +130,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
   },
-})
+});
