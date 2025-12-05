@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
-export const FokusButton = ({ buttonColor = '#706767ff', onPress, title, icon }) => {
+export const FokusButton = ({ buttonColor = '#B872FF', onPress, title, icon }) => {
   return (
     <Pressable
       style={[styles.button, { backgroundColor: buttonColor }]}
