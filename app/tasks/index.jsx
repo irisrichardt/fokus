@@ -1,41 +1,46 @@
-import { FlatList, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
+import { StyleSheet, Text, View } from "react-native";
+import { FokusButton } from "../../components/FokusButton";
+import { IconPlus } from "../../components/Icons";
+import TaskItem from "../../components/TaskItem";
 
-export default function TaskList() {
-  const tasks = [
-    { id: "1", title: "Estudar React Native" },
-    { id: "2", title: "Fazer treino" },
-    { id: "3", title: "Ler um capítulo do livro" },
-  ];
-
+export default function Tasks() {
   return (
-    <SafeAreaView
-      style={{ flex: 1, paddingHorizontal: 16 }}
-      edges={["left", "right"]}
-    >
-      {/* Espaço para deixar o conteúdo abaixo do header */}
-      <View style={{ marginTop: 16 }}>
-        <Text style={{ fontSize: 22, fontWeight: "600", marginBottom: 12 }}>
-          Minhas Tarefas
-        </Text>
-
-        <FlatList
-          data={tasks}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View
-              style={{
-                padding: 14,
-                backgroundColor: "#f0f0f0",
-                borderRadius: 10,
-                marginBottom: 10,
-              }}
-            >
-              <Text style={{ fontSize: 16 }}>{item.title}</Text>
-            </View>
-          )}
+    <View style={styles.container}>
+      <View style={styles.wrapper}>
+        <Text style={styles.text}>Lista de tarefas:</Text>
+        <View style={styles.inner}>
+          <TaskItem completed text="Estudar React" />
+          <TaskItem text="Estudar React Native" />
+        </View>
+        <FokusButton
+          buttonColor="#c9ced1ff"
+          title="Adicionar nova tarefa"
+          icon={<IconPlus outline />}
+          outline
+          onPress={() => router.navigate("/add-task")}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#021123",
+    alignItems: "center",
+  },
+  wrapper: {
+    gap: 40,
+    width: "90%",
+  },
+  text: {
+    textAlign: "center",
+    color: "#FFF",
+    fontSize: 26,
+  },
+  inner: {
+    gap: 8,
+  },
+});

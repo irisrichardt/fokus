@@ -1,3 +1,5 @@
+import { Ionicons } from "@react-native-vector-icons/ionicons";
+import { router } from "expo-router";
 import { Drawer } from "expo-router/drawer";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
@@ -42,9 +44,20 @@ export default function Layout() {
           name="add-task/index"
           options={{
             headerShown: true,
-            title: "Adicionar tarefa",
+            title: "",
             drawerItemStyle: {
               display: "none",
+            },
+            headerLeft: () => {
+              return (
+                <Ionicons
+                  name="arrow-back"
+                  size={24}
+                  color={"#FFF"}
+                  style={{ marginLeft: 16 }}
+                  onPress={() => router.navigate("/tasks")}
+                />
+              );
             },
           }}
         />
